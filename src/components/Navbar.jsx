@@ -124,7 +124,7 @@ const Navbar = () => {
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <Link to="/" >
+        <Link to="/login" >
             <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
