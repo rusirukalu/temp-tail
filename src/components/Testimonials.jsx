@@ -33,7 +33,7 @@ const Testimonials = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">What Our Users Say</h2>
+          <h2 className="text-4xl font-bold mb-4 text-gray-800">What Our Users Say</h2>
           <p className="text-xl text-gray-600">Real experiences from our community</p>
         </motion.div>
 
@@ -45,25 +45,26 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white p-6 rounded-xl shadow-sm"
+              className="relative bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="flex items-center mb-4">
+              <div className="flex items-center mb-4 justify-center">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-gray-600 mb-6">{testimonial.content}</p>
-              <div className="flex items-center">
+              <p className="text-gray-600 italic mb-6">&quot;{testimonial.content}&quot;</p>
+              <div className="flex items-center justify-center">
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover mr-4"
+                  className="w-16 h-16 rounded-full object-cover mr-4"
                 />
-                <div>
-                  <div className="font-semibold">{testimonial.name}</div>
+                <div className="text-center">
+                  <div className="font-semibold text-gray-800">{testimonial.name}</div>
                   <div className="text-gray-500 text-sm">{testimonial.role}</div>
                 </div>
               </div>
+              <div className="absolute inset-0 bg-primary opacity-5 rounded-xl"></div>
             </motion.div>
           ))}
         </div>
