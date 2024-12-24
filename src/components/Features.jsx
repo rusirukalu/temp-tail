@@ -4,17 +4,17 @@ import { Camera, Bot, UserCircle } from 'lucide-react';
 const Features = () => {
   const features = [
     {
-      icon: <Camera className="h-8 w-8" />,
+      icon: <Camera className="h-8 w-8 text-blue-500" />,
       title: "Image Classification",
       description: "Advanced AI-powered system for wardrobe item recognition and tagging."
     },
     {
-      icon: <Bot className="h-8 w-8" />,
+      icon: <Bot className="h-8 w-8 text-green-500" />,
       title: "Interactive Chatbot",
       description: "Smart assistant to help curate your perfect outfit based on various factors."
     },
     {
-      icon: <UserCircle className="h-8 w-8" />,
+      icon: <UserCircle className="h-8 w-8 text-purple-500" />,
       title: "Personalization",
       description: "Tailored recommendations based on your style preferences and occasions."
     }
@@ -30,7 +30,7 @@ const Features = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Feature Highlights</h2>
+          <h2 className="text-4xl font-bold mb-4 text-gray-800">Feature Highlights</h2>
           <p className="text-xl text-gray-600">Experience the power of AI in fashion</p>
         </motion.div>
 
@@ -42,10 +42,16 @@ const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="p-6 bg-gray-50 rounded-xl"
+              className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="mb-4 text-black">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <motion.div
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                className="mb-4 text-black"
+              >
+                {feature.icon}
+              </motion.div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </motion.div>
           ))}

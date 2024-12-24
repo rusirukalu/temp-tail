@@ -1,4 +1,5 @@
-import { Helmet } from 'react-helmet';
+import { motion } from 'framer-motion';
+import MetaTags from '../components/MetaTags';
 import Hero from '../components/Hero';
 import Features from '../components/Features';
 import Stats from '../components/Stats';
@@ -10,20 +11,22 @@ import HowItWorks from '../components/HowItWorks';
 const LandingPage = () => {
   return (
     <>
-    <Helmet>
-        <title>closetIQ-temp</title>
-        <meta name="description" content="closetIQ helps you manage your wardrobe, get outfit recommendations, and virtually try on clothes using AI." />
-        <meta name="keywords" content="AI Stylist, Wardrobe Management, Outfit Recommendations, Virtual Try-On" />
-        <meta name="author" content="Your Name or Company" />
-        {/* Add Open Graph tags for better social media sharing */}
-        <meta property="og:title" content="closetIQ - Your Personal AI Stylist" />
-        <meta property="og:description" content="Manage your wardrobe, receive personalized outfit recommendations, and virtually try on clothes with StyleAI." />
-        <meta property="og:image" content="https://yourdomain.com/path-to-image.jpg" />
-        <meta property="og:url" content="https://yourdomain.com/" />
-        <meta name="twitter:card" content="summary_large_image" />
-    </Helmet>
+    <MetaTags
+      title="closetIQ - Your Personal AI Stylist"
+      description="closetIQ helps you manage your wardrobe, get outfit recommendations, and virtually try on clothes using AI."
+      keywords="AI Stylist, Wardrobe Management, Outfit Recommendations, Virtual Try-On"
+      author="Your Name or Company"
+      ogImage="https://yourdomain.com/path-to-image.jpg"
+      ogUrl="https://yourdomain.com/"
+    />
     <main>
-      <Hero />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <Hero />
+      </motion.div>
       <Features />
       <Benefits />
       <Stats />
