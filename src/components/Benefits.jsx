@@ -4,22 +4,22 @@ import { Clock, Sparkles, Sun, Zap } from 'lucide-react';
 const Benefits = () => {
   const benefits = [
     {
-      icon: <Clock className="h-6 w-6" />,
+      icon: <Clock className="h-8 w-8 text-blue-500" />,
       title: "Save Time",
       description: "Reduce decision fatigue and get dressed faster with AI-powered suggestions."
     },
     {
-      icon: <Sparkles className="h-6 w-6" />,
+      icon: <Sparkles className="h-8 w-8 text-green-500" />,
       title: "Perfect Matches",
       description: "Get outfit combinations that always work well together."
     },
     {
-      icon: <Sun className="h-6 w-6" />,
+      icon: <Sun className="h-8 w-8 text-yellow-500" />,
       title: "Weather-Ready",
       description: "Recommendations adapted to current weather conditions."
     },
     {
-      icon: <Zap className="h-6 w-6" />,
+      icon: <Zap className="h-8 w-8 text-purple-500" />,
       title: "Smart Learning",
       description: "AI that learns your preferences and improves over time."
     }
@@ -35,7 +35,7 @@ const Benefits = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Why Choose AI Stylist?</h2>
+          <h2 className="text-4xl font-bold mb-4 text-gray-800">Why Choose AI Stylist?</h2>
           <p className="text-xl text-gray-600">Experience the benefits of AI-powered fashion assistance</p>
         </motion.div>
 
@@ -47,12 +47,16 @@ const Benefits = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 mb-4 bg-black text-white rounded-full">
+              <motion.div
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-black text-white rounded-full"
+              >
                 {benefit.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
+              </motion.div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{benefit.title}</h3>
               <p className="text-gray-600">{benefit.description}</p>
             </motion.div>
           ))}
