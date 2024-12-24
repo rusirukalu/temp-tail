@@ -54,7 +54,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className={`bg-white fixed top-0 left-0 right-0 z-50 transition ${scrolled ? 'shadow-md' : ''}`}>
+    <header className={`bg-white/70 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition ${scrolled ? 'shadow-md' : ''}`}>
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5 text-2xl font-bold text-black">
