@@ -24,7 +24,7 @@ const Hero = () => {
               preferences, and the weather.
             </p>
             <div className="flex gap-4">
-              <Link to="/signup">
+              <Link to="/dashboard">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -33,7 +33,7 @@ const Hero = () => {
                   Get Started
                 </motion.button>
               </Link>
-              <Link to="/wardrobegrid">
+              <Link to="/userdashboard">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
