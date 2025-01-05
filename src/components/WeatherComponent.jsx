@@ -72,7 +72,7 @@ const WeatherComponent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-md">
+        className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md">
       <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 text-center">Current Weather</h2>
 
       {locationWeather && (
@@ -91,7 +91,7 @@ const WeatherComponent = () => {
       )}
 
         <form onSubmit={fetchWeatherByCity} className="mt-4">
-        <div className="flex overflow-hidden rounded-full border dark:border-gray-600">
+        <div className="flex overflow-hidden rounded-2xl border dark:border-gray-600">
             <input
             type="text"
             value={city}

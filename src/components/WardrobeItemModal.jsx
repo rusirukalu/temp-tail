@@ -38,7 +38,7 @@ const WardrobeItemModal = ({ isOpen, onClose, onAddItem }) => {
         className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg max-w-md w-full"
       >
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-extrabold text-gray-800 dark:text-gray-100">Add Wardrobe Item</h2>
+          <h2 className="text-2xl font-extrabold text-gray-800 dark:text-gray-100">Add Wardrobe Item</h2>
           <button
             onClick={onClose}
             className="text-gray-700 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-500 text-xl focus:outline-none"

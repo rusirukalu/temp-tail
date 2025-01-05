@@ -14,7 +14,7 @@ const SettingsComponent = () => {
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 p-6">
       <>
         <Link to="/userdashboard">
-            <button className="flex items-center bg-black hover:bg-gray text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline mb-5">
+            <button className="flex items-center bg-black hover:bg-gray text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline mb-5">
                 <ChevronLeft className="w-5 h-5 mr-2" />
                 Back
             </button>
@@ -24,7 +24,7 @@ const SettingsComponent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6"
+        className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-6"
       >
         <h1 className="text-2xl font-bold flex items-center mb-6">
           <Settings className="w-6 h-6 mr-2" /> Settings

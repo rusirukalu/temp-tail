@@ -135,7 +135,7 @@ const Dashboard = () => {
                 whileTap={{ scale: 0.9 }}
                 className="relative"
               >
-                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-2">3</span>
+                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-2xl px-2">3</span>
                 <Bell className="w-6 h-6 text-gray-800 dark:text-gray-200" />
               </motion.div>
             </Link>
@@ -146,12 +146,12 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-3xl"
+            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-2xl"
           >
             <h2 className="text-xl font-bold mb-4">User Preferences</h2>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-colors"
+              className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-2xl shadow-lg transition-colors"
             >
               Set Preferences
             </button>
@@ -164,13 +164,13 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-3xl col-span-3"
+            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-2xl col-span-3"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Wardrobe Items</h2>
               <button
                 onClick={() => setIsWardrobeModalOpen(true)}
-                className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-colors flex items-center"
+                className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-2xl shadow-lg transition-colors flex items-center"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Item
@@ -178,7 +178,7 @@ const Dashboard = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {wardrobeItems.map((item) => (
-                <div key={item._id} className="bg-white dark:bg-gray-700 p-4 rounded shadow-md border border-gray-200 dark:border-gray-600">
+                <div key={item._id} className="bg-white dark:bg-gray-700 p-4 rounded-2xl shadow-md border border-gray-200 dark:border-gray-600">
                   {item.imageUrl && (<img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover rounded mb-2" />
                   )}
                   <h3 className="text-lg font-semibold">{item.name}</h3>
@@ -194,7 +194,7 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-3xl col-span-3"
+            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-2xl col-span-3"
           >
             <h2 className="text-xl font-bold mb-4">Recommendations</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -225,13 +225,13 @@ const Dashboard = () => {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setIsLogoutModalOpen(false)}
-                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
               >
                 Cancel
               </button>
               <button
                 onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
               >
                 Logout
               </button>
