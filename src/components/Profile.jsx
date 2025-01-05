@@ -7,7 +7,7 @@ const Profile = () => {
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 p-6">
         <>
         <Link to="/userdashboard">
-            <button className="flex items-center bg-black hover:bg-gray text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5">
+            <button className="flex items-center bg-black hover:bg-gray text-white font-bold py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline mb-5">
                 <ChevronLeft className="w-5 h-5 mr-2" />
                 Back
             </button>
@@ -26,7 +26,7 @@ const Profile = () => {
             <p className="text-gray-600 dark:text-gray-300">kalumalli@example.com</p>
           </div>
         </div>
-        <button className="flex items-center bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <button className="flex items-center bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
           <Edit2 className="w-5 h-5 mr-2" />
           Edit Profile
         </button>

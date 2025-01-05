@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { WiDaySunny, WiCloudy, WiRain, WiSnow, WiThunderstorm, WiFog } from 'react-icons/wi';
 
 const WeatherComponent = () => {
@@ -67,7 +68,11 @@ const WeatherComponent = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+    <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-md">
       <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 text-center">Current Weather</h2>
 
       {locationWeather && (
@@ -85,20 +90,24 @@ const WeatherComponent = () => {
         </div>
       )}
 
-      <form onSubmit={fetchWeatherByCity} className="mt-4">
-        <div className="flex">
-          <input
+        <form onSubmit={fetchWeatherByCity} className="mt-4">
+        <div className="flex overflow-hidden rounded-full border dark:border-gray-600">
+            <input
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             placeholder="Enter city name"
-            className="w-full px-3 py-2 border rounded-l focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-          />
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none">
+            className="w-full px-3 py-2 border-none focus:outline-none dark:bg-gray-700 dark:text-gray-200"
+            />
+            <button
+            type="submit"
+            className="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 focus:outline-none"
+            >
             Search
-          </button>
+            </button>
         </div>
-      </form>
+        </form>
+
 
       {weather && (
         <div className="mt-4 space-y-2">
@@ -116,7 +125,7 @@ const WeatherComponent = () => {
       )}
 
       {error && <div className="mt-4 text-red-500 text-center">{error}</div>}
-    </div>
+    </motion.div>
   );
 };
 

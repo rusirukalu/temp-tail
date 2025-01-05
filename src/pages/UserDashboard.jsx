@@ -118,7 +118,7 @@ const Dashboard = () => {
         </nav>
       </aside>
       <main className="flex-1 p-6">
-        <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 shadow-md rounded-lg mb-6">
+        <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-5 shadow-md rounded-2xl mb-6">
           <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Welcome Back, කලු මල්ලි</h1>
           <div className="flex items-center space-x-4">
             <motion.button
@@ -146,12 +146,12 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg"
+            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-3xl"
           >
             <h2 className="text-xl font-bold mb-4">User Preferences</h2>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-colors"
             >
               Set Preferences
             </button>
@@ -164,13 +164,13 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg col-span-3"
+            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-3xl col-span-3"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Wardrobe Items</h2>
               <button
                 onClick={() => setIsWardrobeModalOpen(true)}
-                className="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center"
+                className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-colors flex items-center"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Item
@@ -194,7 +194,7 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg col-span-3"
+            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-3xl col-span-3"
           >
             <h2 className="text-xl font-bold mb-4">Recommendations</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -225,13 +225,13 @@ const Dashboard = () => {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setIsLogoutModalOpen(false)}
-                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
               >
                 Cancel
               </button>
               <button
                 onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
               >
                 Logout
               </button>
@@ -241,39 +241,58 @@ const Dashboard = () => {
       )}
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <form onSubmit={handleSubmit} className="mt-4 p-4 bg-white dark:bg-gray-800 rounded">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="flex flex-col">
           <h2 className="text-lg font-semibold mb-4">Set Preferences</h2>
-          <label className="block text-gray-700 dark:text-gray-200 mb-2">Style</label>
+          <label htmlFor="style" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Style
+          </label>
           <input
             type="text"
+            id="style"
             name="style"
             value={preferences.style}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 mb-4" 
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
           />
-          <label className="block text-gray-700 dark:text-gray-200 mb-2">Color</label>
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="color" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Color
+          </label>
           <input
             type="text"
+            id="color"
             name="color"
             value={preferences.color}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 mb-4" 
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
           />
-          <label className="block text-gray-700 dark:text-gray-200 mb-2">Occasion</label>
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="occasion" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Occasion
+          </label>
           <input
             type="text"
+            id="occasion"
             name="occasion"
             value={preferences.occasion}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 mb-4"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
           />
-          <button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Update Preferences
-          </button>
-        </form>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-3 rounded-lg bg-gray-800 text-white font-bold text-lg shadow-md hover:bg-gray-700 transition-colors"
+        >
+          Update Preferences
+        </button>
+      </form>
+
       </Modal>
 
       <WardrobeItemModal
