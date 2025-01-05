@@ -24,7 +24,7 @@ const SettingsComponent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6"
+        className="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6"
       >
         <h1 className="text-2xl font-bold flex items-center mb-6">
           <Settings className="w-6 h-6 mr-2" /> Settings

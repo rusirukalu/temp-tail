@@ -17,7 +17,7 @@ const Profile = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6"
+        className="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6"
       >
         <div className="flex items-center space-x-4 mb-6">
           <User className="w-16 h-16 text-black" />

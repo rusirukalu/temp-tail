@@ -219,7 +219,7 @@ const Dashboard = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-white dark:bg-gray-800 p-6 rounded shadow-lg w-96"
+            className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg w-96"
           >
             <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4">Are you sure you want to logout?</h2>
             <div className="flex justify-end space-x-4">
