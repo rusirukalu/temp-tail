@@ -21,9 +21,9 @@ function App() {
             </MainLayout>
           } />
           <Route path="/login" element={
-            <MainLayout>
+            
               <Login />
-            </MainLayout>
+            
             } />
           <Route path="/userdashboard" element={
               <UserDashboard />

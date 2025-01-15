@@ -31,7 +31,7 @@ const GoToTop = () => {
     isVisible && (
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 p-3 bg-black text-white rounded-full shadow-lg hover:bg-white hover:text-black focus:outline-none"
+        className="fixed bottom-6 right-6 p-3 z-10 bg-black text-white rounded-full shadow-lg hover:bg-white hover:text-black focus:outline-none"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}

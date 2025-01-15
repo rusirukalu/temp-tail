@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { WiDaySunny, WiCloudy, WiRain, WiSnow, WiThunderstorm, WiFog } from 'react-icons/wi';
+import { Search } from 'lucide-react';
 
 const WeatherComponent = () => {
   const [weather, setWeather] = useState(null);
@@ -69,62 +70,138 @@ const WeatherComponent = () => {
 
   return (
     <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md">
-      <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 text-center">Current Weather</h2>
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative overflow-hidden rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 w-full max-w-md"
+    >
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 animate-gradient-xy"></div>
+      
+      <div className="relative p-5">
+        <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text text-center">
+          Weather Info
+        </h2>
 
-      {locationWeather && (
-        <div className="space-y-2">
-          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 text-center">{locationWeather.name}</h3>
-          <div className="flex justify-center items-center">
-              <p className="text-2xl mr-4 text-gray-600 dark:text-gray-200">{locationWeather.main.temp} °C</p>
-              {getWeatherIcon(locationWeather.weather[0].main)}
-          </div>
-          <p className="text-gray-600 dark:text-gray-200 text-center">{locationWeather.weather[0].description}</p>
-          <div className="flex justify-between">
-            <p className="text-gray-600 dark:text-gray-200">Humidity: {locationWeather.main.humidity}%</p>
-            <p className="text-gray-600 dark:text-gray-200">Wind Speed: {locationWeather.wind.speed} m/s</p>
-          </div>
-        </div>
-      )}
+        {locationWeather && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mb-6"
+          >
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+              <div className="text-center mb-3">
+                <h3 className="text-xl font-semibold text-white/90 mb-2">
+                  {locationWeather.name}
+                </h3>
+                <div className="flex justify-center items-center gap-3">
+                  <span className="text-3xl font-bold text-white">
+                    {Math.round(locationWeather.main.temp)}°C
+                  </span>
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="text-blue-400"
+                  >
+                    {getWeatherIcon(locationWeather.weather[0].main)}
+                  </motion.div>
+                </div>
+                <p className="text-sm text-gray-300 capitalize mt-1">
+                  {locationWeather.weather[0].description}
+                </p>
+              </div>
 
-        <form onSubmit={fetchWeatherByCity} className="mt-4">
-        <div className="flex overflow-hidden rounded-2xl border dark:border-gray-600">
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                <div className="bg-white/5 rounded-lg p-2">
+                  <p className="text-gray-400 text-xs text-center mb-1">Humidity</p>
+                  <p className="text-lg font-bold text-white text-center">
+                    {locationWeather.main.humidity}%
+                  </p>
+                </div>
+                <div className="bg-white/5 rounded-lg p-2">
+                  <p className="text-gray-400 text-xs text-center mb-1">Wind Speed</p>
+                  <p className="text-lg font-bold text-white text-center">
+                    {locationWeather.wind.speed} m/s
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        <form onSubmit={fetchWeatherByCity} className="relative">
+          <div className="flex overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm focus-within:border-blue-500 transition-all duration-300">
             <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="Enter city name"
-            className="w-full px-3 py-2 border-none focus:outline-none dark:bg-gray-700 dark:text-gray-200"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="Search city..."
+              className="w-full px-4 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none text-sm"
             />
-            <button
-            type="submit"
-            className="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 focus:outline-none"
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center gap-2 hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
             >
-            Search
-            </button>
-        </div>
+              <Search className="w-4 h-4" />
+              <span className="text-sm">Search</span>
+            </motion.button>
+          </div>
         </form>
 
+        {weather && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-4 bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
+          >
+            <div className="text-center">
+              <h3 className="text-xl font-semibold text-white/90 mb-2">
+                {weather.name}
+              </h3>
+              <div className="flex justify-center items-center gap-3">
+                <span className="text-3xl font-bold text-white">
+                  {Math.round(weather.main.temp)}°C
+                </span>
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="text-blue-400"
+                >
+                  {getWeatherIcon(weather.weather[0].main)}
+                </motion.div>
+              </div>
+              <p className="text-sm text-gray-300 capitalize mt-1">
+                {weather.weather[0].description}
+              </p>
+              
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                <div className="bg-white/5 rounded-lg p-2">
+                  <p className="text-gray-400 text-xs">Humidity</p>
+                  <p className="text-lg font-bold text-white">
+                    {weather.main.humidity}%
+                  </p>
+                </div>
+                <div className="bg-white/5 rounded-lg p-2">
+                  <p className="text-gray-400 text-xs">Wind Speed</p>
+                  <p className="text-lg font-bold text-white">
+                    {weather.wind.speed} m/s
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
-      {weather && (
-        <div className="mt-4 space-y-2">
-          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 text-center">{weather.name}</h3>
-          <div className="flex justify-center items-center">
-              <p className="text-2xl mr-4 text-gray-600 dark:text-gray-200">{weather.main.temp} °C</p>
-              {getWeatherIcon(weather.weather[0].main)}
-          </div>
-          <p className="text-gray-600 dark:text-gray-200 text-center">{weather.weather[0].description}</p>
-          <div className="flex justify-between">
-            <p className="text-gray-600 dark:text-gray-200">Humidity: {weather.main.humidity}%</p>
-            <p className="text-gray-600 dark:text-gray-200">Wind Speed: {weather.wind.speed} m/s</p>
-          </div>
-        </div>
-      )}
-
-      {error && <div className="mt-4 text-red-500 text-center">{error}</div>}
+        {error && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20 backdrop-blur-sm"
+          >
+            <p className="text-red-400 text-sm text-center">{error}</p>
+          </motion.div>
+        )}
+      </div>
     </motion.div>
   );
 };

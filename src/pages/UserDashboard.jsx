@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, User, Settings, LogOut, Bell, Sun, Moon, Plus } from 'lucide-react';
+import { Home, User, Settings, LogOut, Bell, Plus } from 'lucide-react';
 import Modal from '../components/Modal';
 import WeatherComponent from '../components/WeatherComponent';
 import WardrobeItemModal from '../components/WardrobeItemModal';
@@ -12,7 +12,6 @@ const Dashboard = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [preferences, setPreferences] = useState({ style: '', color: '', occasion: '' });
   const [wardrobeItems, setWardrobeItems] = useState([]);
-  const [darkMode, setDarkMode] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
 
   const navigate = useNavigate();
@@ -74,18 +73,6 @@ const Dashboard = () => {
     setWardrobeItems((prev) => [...prev, item]);
   };
 
-  const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
-  };
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
   const handleLogout = () => {
     console.log('User logged out');
     setIsLogoutModalOpen(false); // Close the modal
@@ -93,124 +80,177 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
-      <aside className="w-64 bg-white dark:bg-gray-800 shadow-md">
-        <div className="p-4 flex items-center">
-          <Home className="w-6 h-6 text-blue-500" />
-          <span className="ml-2 text-xl font-bold text-gray-800 dark:text-gray-100">Dashboard</span>
-        </div>
-        <nav className="flex flex-col p-4 space-y-4">
-          <Link to="/profile" className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-400">
-            <User className="w-5 h-5 mr-2" />
-            Profile
-          </Link>
-          <Link to="/settingscomponent" className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-400">
-            <Settings className="w-5 h-5 mr-2" />
-            Settings
-          </Link>
-          <button
-            onClick={() => setIsLogoutModalOpen(true)} // Open the logout modal
-            className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-400 focus:outline-none"
-          >
-            <LogOut className="w-5 h-5 mr-2" />
-            Log Out
-          </button>
-        </nav>
-      </aside>
-      <main className="flex-1 p-6">
-        <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-5 shadow-md rounded-2xl mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Welcome Back, කලු මල්ලි</h1>
-          <div className="flex items-center space-x-4">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleDarkMode}
-              className="text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-400 focus:outline-none"
-            >
-              {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-            </motion.button>
-            <Link to="/notifications">
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="relative"
-              >
-                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-2xl px-2">3</span>
-                <Bell className="w-6 h-6 text-gray-800 dark:text-gray-200" />
-              </motion.div>
-            </Link>
-          </div>
-        </header>
-        <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-2xl"
-          >
-            <h2 className="text-xl font-bold mb-4">User Preferences</h2>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-2xl shadow-lg transition-colors"
-            >
-              Set Preferences
-            </button>
-          </motion.div>
-          <WeatherComponent />
-        </section>
-
-        <section className="mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-2xl col-span-3"
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Wardrobe Items</h2>
-              <button
-                onClick={() => setIsWardrobeModalOpen(true)}
-                className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-2xl shadow-lg transition-colors flex items-center"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Add Item
-              </button>
+    <div className="min-h-screen flex bg-[#0A0A0F] text-gray-100">
+      {/* Sidebar with glass effect */}
+      <aside className="w-80 bg-black/20 backdrop-blur-2xl border-r border-white/5 relative overflow-hidden">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-blue-500/10 animate-gradient-y"></div>
+        
+        <div className="relative">
+          <div className="p-8 flex items-center space-x-4">
+            <div className="p-3 bg-white/5 rounded-2xl backdrop-blur-xl">
+              <Home className="w-8 h-8 text-blue-400" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
+              Dashboard
+            </span>
+          </div>
+
+          <nav className="mt-8 px-6">
+            {/* Animated nav items */}
+            <Link to="/profile" 
+              className="group flex items-center p-4 mb-4 rounded-2xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/5 hover:border-white/10">
+              <div className="p-2 rounded-xl bg-blue-400/10 group-hover:bg-blue-400/20 transition-all duration-300">
+                <User className="w-5 h-5 text-blue-400" />
+              </div>
+              <span className="ml-4 font-medium text-gray-300 group-hover:text-blue-400 transition-colors duration-300">Profile</span>
+            </Link>
+
+            <Link to="/settingscomponent"
+              className="group flex items-center p-4 mb-4 rounded-2xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/5 hover:border-white/10">
+              <div className="p-2 rounded-xl bg-purple-400/10 group-hover:bg-purple-400/20 transition-all duration-300">
+                <Settings className="w-5 h-5 text-purple-400" />
+              </div>
+              <span className="ml-4 font-medium text-gray-300 group-hover:text-purple-400 transition-colors duration-300">Settings</span>
+            </Link>
+
+            <button onClick={() => setIsLogoutModalOpen(true)}
+              className="w-full group flex items-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm hover:bg-red-500/10 transition-all duration-300 border border-white/5 hover:border-red-500/20">
+              <div className="p-2 rounded-xl bg-red-400/10 group-hover:bg-red-400/20 transition-all duration-300">
+                <LogOut className="w-5 h-5 text-red-400" />
+              </div>
+              <span className="ml-4 font-medium text-gray-300 group-hover:text-red-400 transition-colors duration-300">Log Out</span>
+            </button>
+          </nav>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-8 overflow-auto">
+        {/* Header */}
+        <header className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+              Welcome Back,
+            </span>
+            <span className="ml-2 text-white">කලු මල්ලි</span>
+          </h1>
+          
+          <Link to="/notifications">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative">
+              <div className="p-3 bg-white/5 rounded-full backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/5 hover:border-white/10">
+                <Bell className="w-6 h-6 text-blue-400" />
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+              </div>
+            </motion.div>
+          </Link>
+        </header>
+
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* User Preferences Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="p-6 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/5 hover:border-white/10 transition-all duration-300"
+          >
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-6">
+              User Preferences
+            </h2>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setIsModalOpen(true)}
+              className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold relative overflow-hidden group"
+            >
+              <span className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              Set Preferences
+            </motion.button>
+          </motion.div>
+
+          {/* Weather Component */}
+          <WeatherComponent />
+
+          {/* Wardrobe Section - Full Width */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="col-span-full p-8 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/5 hover:border-white/10 transition-all duration-300"
+          >
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
+                Wardrobe Items
+              </h2>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsWardrobeModalOpen(true)}
+                className="flex items-center space-x-2 py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold relative overflow-hidden group"
+              >
+                <Plus className="w-5 h-5" />
+                <span>Add Item</span>
+                <span className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </motion.button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {wardrobeItems.map((item) => (
-                <div key={item._id} className="bg-white dark:bg-gray-700 p-4 rounded-2xl shadow-md border border-gray-200 dark:border-gray-600">
-                  {item.imageUrl && (<img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover rounded mb-2" />
+                <motion.div
+                  key={item._id}
+                  whileHover={{ scale: 1.02 }}
+                  className="group relative bg-white/5 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-300"
+                >
+                  {item.imageUrl && (
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent"></div>
+                    </div>
                   )}
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">{item.category}</p>
-                </div>
+                  <div className="absolute bottom-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent">
+                    <h3 className="text-xl font-semibold text-white mb-1">{item.name}</h3>
+                    <p className="text-blue-400">{item.category}</p>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
-        </section>
 
-        <section className="mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {/* Recommendations Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-2xl col-span-3"
+            className="col-span-full p-8 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/5 hover:border-white/10 transition-all duration-300"
           >
-            <h2 className="text-xl font-bold mb-4">Recommendations</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-8">
+              Recommendations
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendations.map((recommendation) => (
-                <div key={recommendation._id} className="bg-white dark:bg-gray-700 p-4 rounded shadow-md border border-gray-200 dark:border-gray-600">
-                  <h3 className="text-lg font-semibold">Occasion: {recommendation.occasion}</h3>
-                  <ul>
+                <motion.div
+                  key={recommendation._id}
+                  whileHover={{ scale: 1.02 }}
+                  className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300"
+                >
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-4">
+                    {recommendation.occasion}
+                  </h3>
+                  <ul className="space-y-3">
                     {recommendation.outfit.map((item) => (
-                      <li key={item._id} className="text-gray-600 dark:text-gray-300">{item.name}</li>
+                      <li key={item._id} className="flex items-center space-x-3 text-gray-300">
+                        <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                        <span>{item.name}</span>
+                      </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
-        </section>
+        </div>
       </main>
 
       {isLogoutModalOpen && (
